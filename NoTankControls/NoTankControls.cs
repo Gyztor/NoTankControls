@@ -18,6 +18,7 @@ namespace NoTankControls
 
         public override void OnEngineInit()
         {
+            Config = GetConfiguration();
             Harmony harmony = new Harmony("U-xyla.NoTankControls");
             harmony.PatchAll();
         }
