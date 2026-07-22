@@ -13,6 +13,7 @@ namespace NoTankControls
         public override string Name => ModAssembly.GetCustomAttribute<AssemblyTitleAttribute>()!.Title;
 	    public override string Author => ModAssembly.GetCustomAttribute<AssemblyCompanyAttribute>()!.Company;
 	    public override string Version => ModAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()!.InformationalVersion;
+
 	    public override string Link => ModAssembly.GetCustomAttributes<AssemblyMetadataAttribute>().First(meta => meta.Key == "RepositoryUrl").Value!;
 
         public static ModConfiguration Config;
