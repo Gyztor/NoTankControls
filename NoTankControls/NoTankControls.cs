@@ -1,8 +1,6 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using ResoniteModLoader;
 using FrooxEngine;
-using FrooxEngine.UIX;
 
 namespace NoTankControls
 {
@@ -18,7 +16,6 @@ namespace NoTankControls
         [AutoRegisterConfigKey]
 		private static ModConfigurationKey<bool> MOD_ENABLED = new ModConfigurationKey<bool>("MOD_ENABLED", "Mod Enabled:", () => true);
 
-        private static bool _first_trigger = false;
         public override void OnEngineInit()
         {
             Harmony harmony = new Harmony("U-xyla.NoTankControls");
