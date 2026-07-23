@@ -9,7 +9,9 @@ This mod removes that restriction, allowing tools to be equipped while keeping f
 
 ## Relavent Issues
 https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/23 - seems related.
+
 https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/125 - Was closed as not planned but seems related.
+
 https://github.com/Yellow-Dog-Man/Resonite-Issues/issues/2310 - seems related.
 
 
