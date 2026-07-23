@@ -30,6 +30,7 @@ namespace NoTankControls
 
         [HarmonyPatch(typeof(InteractionHandler))]
         [HarmonyPatch("BeforeInputUpdate")]
+        [HarmonyBefore("BepInEx.Plugin.art0007i.InspectorScroll", "me.art0007i.InspectorScroll")] 
         class NoTankControlsPatch
         {
             [HarmonyPatch]
