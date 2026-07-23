@@ -3,7 +3,7 @@ using ResoniteModLoader;
 using FrooxEngine;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
+//using System.Reflection.Metadata.Ecma335;
 
 namespace NoTankControls
 {
@@ -23,16 +23,17 @@ namespace NoTankControls
 
         public override void OnEngineInit()
         {
-            Config = GetConfiguration();
-            Harmony harmony = new Harmony($"{ModAssembly.GetCustomAttributes<AssemblyMetadataAttribute>().First(meta => meta.Key == "PackageId").Value!}");
+            Harmony harmony = new Harmony("U-xyla.NoTankControls");
             harmony.PatchAll();
+            Config = GetConfiguration();
         }
 
         [HarmonyPatch(typeof(InteractionHandler))]
         [HarmonyPatch("BeforeInputUpdate")]
         class NoTankControlsPatch
         {
-            private static void Postfix(InteractionHandler __instance, ref InteractionHandlerInputs ____inputs)
+            [HarmonyPatch]
+            public static void Postfix(InteractionHandler __instance, ref InteractionHandlerInputs ____inputs)
             {
                 if (Config.GetValue(MOD_ENABLED)) {
                     ____inputs.Axis.RegisterBlocks = false;
