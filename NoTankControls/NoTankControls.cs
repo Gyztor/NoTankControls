@@ -1,31 +1,26 @@
 ﻿using HarmonyLib;
-using ResoniteModLoader;
+using BepInEx;
+using BepInEx.Logging;
+using BepInEx.NET.Common;
+using BepInExResoniteShim;
+using BepisResoniteWrapper;
 using FrooxEngine;
 using System.Linq;
 using System.Reflection;
-//using System.Reflection.Metadata.Ecma335;
+using BepInEx.Configuration;
 
 namespace NoTankControls
 {
-    public class NoTankControls : ResoniteMod
+    [ResonitePlugin(PluginMetadata.GUID, PluginMetadata.NAME, PluginMetadata.VERSION, PluginMetadata.AUTHORS, PluginMetadata.REPOSITORY_URL)]
+    [BepInDependency(BepInExResoniteShim.PluginMetadata.GUID)]
+    public class NoTankControls : BasePlugin
     {
-        private static Assembly ModAssembly => typeof(NoTankControls).Assembly;
-        public override string Name => ModAssembly.GetCustomAttribute<AssemblyTitleAttribute>()!.Title;
-	    public override string Author => ModAssembly.GetCustomAttribute<AssemblyCompanyAttribute>()!.Company;
-	    public override string Version => ModAssembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()!.InformationalVersion;
+        internal static ConfigEntry<bool> NoTankControlsEnabled;
 
-	    public override string Link => ModAssembly.GetCustomAttributes<AssemblyMetadataAttribute>().First(meta => meta.Key == "RepositoryUrl").Value!;
-
-        public static ModConfiguration Config;
-
-        [AutoRegisterConfigKey]
-		private static ModConfigurationKey<bool> MOD_ENABLED = new ModConfigurationKey<bool>("MOD_ENABLED", "Mod Enabled:", () => true);
-
-        public override void OnEngineInit()
+        public override void Load()
         {
-            Harmony harmony = new Harmony("U-xyla.NoTankControls");
-            harmony.PatchAll();
-            Config = GetConfiguration();
+            NoTankControlsEnabled = Config.Bind("General", "Enabled", true, new ConfigDescription("Enables NoTankControls"));
+            HarmonyInstance.PatchAll();
         }
 
         [HarmonyPatch(typeof(InteractionHandler))]
@@ -35,7 +30,7 @@ namespace NoTankControls
             [HarmonyPatch]
             public static void Postfix(InteractionHandler __instance, ref InteractionHandlerInputs ____inputs)
             {
-                if (Config.GetValue(MOD_ENABLED)) {
+                if (NoTankControlsEnabled.Value) {
                     ____inputs.Axis.RegisterBlocks = false;
                 }
             }

@@ -1,0 +1,39 @@
+[config]
+schemaVersion = "0.0.1"
+
+[package]
+namespace = "GyztorMizirath"
+name = "NoTankControls"
+versionNumber = "2.0.0"
+description = "A Bepis Mod Loader mod that stops VR Controllers from having tools remove locomotion movement from the hand that has an equipped tool."
+websiteUrl = "https://github.com/Gyztor/BepisResoniteInputControl"
+containsNsfwContent = false
+
+[package.dependencies]
+ResoniteModding-BepisLoader = "1.6.0"
+
+
+[build]
+icon = "./Icon.png"
+readme = "./README.md"
+outdir = "./bin/build"
+
+[[build.copy]]
+source = "./license.txt"
+target = "/"
+
+
+[[build.copy]]
+source = "./NoTankControls/bin/Release/NoTankControls.dll"
+target = "plugins/NoTankControls/"
+
+[[build.copy]]
+source = "./NoTankControls/bin/Release/NoTankControls.pdb"
+target = "plugins/NoTankControls/"
+
+[publish]
+repository = "https://thunderstore.io"
+communities = ["resonite"]
+
+[publish.categories]
+resonite = []
