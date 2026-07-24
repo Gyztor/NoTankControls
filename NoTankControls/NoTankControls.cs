@@ -36,7 +36,7 @@ namespace NoTankControls
             [HarmonyPatch]
             public static void Postfix(InteractionHandler __instance, ref InteractionHandlerInputs ____inputs)
             {
-                if (Config.GetValue(MOD_ENABLED)) {
+                if (Config.GetValue(MOD_ENABLED) && ____inputs.Axis.RegisterBlocks) {
                     ____inputs.Axis.RegisterBlocks = false;
                 }
             }
