@@ -6,7 +6,7 @@ namespace = "GyztorMizirath"
 name = "NoTankControls"
 versionNumber = "2.0.1"
 description = "A Bepis Mod Loader mod that stops VR Controllers from having tools remove locomotion movement from the hand that has an equipped tool."
-websiteUrl = "https://github.com/Gyztor/BepisResoniteInputControl"
+websiteUrl = "https://github.com/Gyztor/NoTankControls"
 containsNsfwContent = false
 
 [package.dependencies]
